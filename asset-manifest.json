@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/geography-game/static/css/main.bb616603.css",
+    "main.js": "/geography-game/static/js/main.404bfa8c.js",
+    "index.html": "/geography-game/index.html",
+    "main.bb616603.css.map": "/geography-game/static/css/main.bb616603.css.map",
+    "main.404bfa8c.js.map": "/geography-game/static/js/main.404bfa8c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bb616603.css",
+    "static/js/main.404bfa8c.js"
+  ]
+}
