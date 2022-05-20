@@ -1,6 +1,6 @@
 # Игра в географию
 
-[Демо игры](https://github.com/facebook/create-react-app).
+[Демо игры](https://nikbritoff.github.io/geography-game/)
 
 ## Описание
 
