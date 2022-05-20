@@ -1,46 +1,27 @@
-# Getting Started with Create React App
+# Игра в географию
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Демо игры](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Описание
 
-In the project directory, you can run:
+Суть игры - выбрать правильно страну и город. На экране выводятся кнопки - это города и страны из объекта. Кнопки должны быть в рандомном порядке (при каждом запуске игры новый порядок). Первый клик выбираем город или страну, она меняет цвет на синий. Второй клик - если клик был на правильную пару, то эта пара пропадает с экрана. Если пара неверная, то обе кнопки подсвечиваются красным, до момента пока не совершим новый клик на другую кнопку. После того как на экране не останется кнопок - выводим текст - ВЫ ВЫИГРАЛИ.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Требования
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- В объекте правильной парой всегда считается ключ и его значение;
+- Использование TypeScript обязательно;
+- Хранение и обработку данных необходимо реализовать в Redux. Можно использовать любые побочные инструменты к нему. (В качестве задания со звездочкой - можно сохранять прогресс игры между сессиями браузера. Но если игра была закончена, то следующий запуск страницы начинается с новой игры);
+- Стилизация свободная, главное учесть цвета кнопок указанные в задании;
+- Ограничения по времени нет, поэтому рекомендуется сделать упор на качестве кода:)
+- Результат принимается в любом удобном виде - codesandbox/репозиторий/архив.
 
-### `npm test`
+### Исходные данные
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+В качестве исходных данных есть объект:
+{
+	Russia: “Moscow”,
+	Japan: “Tokyo”,
+	Germany: “Berlin”,
+	France: “Paris”
+}
