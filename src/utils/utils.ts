@@ -5,20 +5,23 @@ type Data = {
   [key: string]: string,
 };
 
+const getRandomIntInclusive = (): number => {
+  const MIN = -1;
+  const MAX = 1;
+
+  return Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
+}
+
 export const getRandomOrder = (data: Data): string[] => {
-  let namesList = Object.values(data).concat(Object.keys(data));
+  const list = [];
 
-  const randomNamesList = [];
-
-  while (namesList.length > 0) {
-    const index = Math.floor(Math.random() * namesList.length);
-
-    randomNamesList.push(namesList[index]);
-
-    namesList = [...namesList.slice(0, index), ...namesList.slice(index + 1)];
+  for (let key in data) {
+    list.push(key, data[key]);
   }
 
-  return randomNamesList;
+  list.sort(getRandomIntInclusive);
+
+  return list;
 }
 
 export const initLocalStorage = (state: State): void => {

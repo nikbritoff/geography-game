@@ -1,3 +1,4 @@
+import styles from './button.module.css';
 import cn from 'classnames';
 
 type ButtonProps = {
@@ -7,14 +8,14 @@ type ButtonProps = {
   isWrong: boolean,
 }
 
-function Button({ name, handleClick, selected, isWrong }: ButtonProps) {
+function Button({ name, handleClick, selected, isWrong }: ButtonProps): JSX.Element {
   return (
     <button
       className={
         cn(
-          'button',
-          selected.includes(name) && 'button--selected',
-          isWrong && selected.includes(name) && 'button--error',
+          styles.button,
+          selected.includes(name) && styles.selected,
+          isWrong && selected.includes(name) && styles.error,
         )}
       onClick={() => handleClick(name)}
     >

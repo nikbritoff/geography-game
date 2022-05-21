@@ -1,45 +1,30 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import Button from '../button/button';
 import Message from '../message/message';
-import State from '../../types/state';
-import { Dispatch } from 'redux';
-import { connect, ConnectedProps } from 'react-redux';
-import { Actions } from '../../types/action';
+import { useSelector, useDispatch } from 'react-redux';
 import { LocalStoragaNames } from '../../const';
-import { addSelectedAction, clearSelectedAction, removeSelectedAction, setWrongAction, updatePlayListAction } from '../../store/action';
+import styles from './app.module.css';
+import {
+  addSelectedAction,
+  clearSelectedAction,
+  removeSelectedAction,
+  setWrongAction,
+  updatePlayListAction,
+} from '../../store/action';
+import { getIsWrong, getPairs, getPlayList, getSelected } from '../../store/selectors';
 
-const mapStateToProps = ({ playList, selected, pairs, isWrong }: State) => ({
-  playList,
-  selected,
-  pairs,
-  isWrong,
-});
+function App() {
+  const selected = useSelector(getSelected);
+  const playList = useSelector(getPlayList);
+  const pairs = useSelector(getPairs);
+  const isWrong = useSelector(getIsWrong);
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  addSelected: (name: string) => dispatch(addSelectedAction(name)),
-  removeSelected: (name: string) => dispatch(removeSelectedAction(name)),
-  clearSelected: () => dispatch(clearSelectedAction()),
-  setWrong: () => dispatch(setWrongAction()),
-  updatePlayList: (list: string[]) => dispatch(updatePlayListAction(list)),
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-type ConnectedComponentProps = PropsFromRedux;
-
-function App({
-  playList,
-  selected,
-  pairs,
-  isWrong,
-  addSelected,
-  removeSelected,
-  clearSelected,
-  setWrong,
-  updatePlayList,
-}: ConnectedComponentProps) {
+  const dispatch = useDispatch();
+  const addSelected = (name: string) => dispatch(addSelectedAction(name));
+  const removeSelected = (name: string) => dispatch(removeSelectedAction(name));
+  const clearSelected = useCallback(() => {
+    dispatch(clearSelectedAction())
+  }, [dispatch]);
 
   const handleClick = (name: string) => {
     if (selected.includes(name)) {
@@ -56,6 +41,8 @@ function App({
   }
 
   useEffect(() => {
+    const setWrong = () => dispatch(setWrongAction());
+    const updatePlayList = (list: string[]) => dispatch(updatePlayListAction(list));
     const checkAnswer = () => {
       let isCorrect = false;
 
@@ -76,7 +63,7 @@ function App({
     if (selected.length === 2) {
       checkAnswer();
     }
-  }, [clearSelected, pairs, playList, selected, setWrong, updatePlayList]);
+  }, [clearSelected, dispatch, pairs, playList, selected]);
 
   useEffect(() => {
     if (playList.length === 0) {
@@ -94,8 +81,8 @@ function App({
   }, [isWrong, pairs, playList, selected]);
 
   return (
-    <div className='App'>
-      {playList.length !== 0 && <div className='list'>
+    <div className={styles.app}>
+      {playList.length !== 0 && <div className={styles.list}>
         {playList.map((name: string) => (
           <Button
             key={name}
@@ -111,5 +98,4 @@ function App({
   );
 }
 
-export { App };
-export default connector(App);
+export default App;

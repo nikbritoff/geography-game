@@ -1,6 +1,8 @@
+import styles from './message.module.css';
+
 function Message() {
   return (
-    <p>Вы победили!</p>
+    <p className={styles.message}>Вы победили!</p>
   );
 }
 
